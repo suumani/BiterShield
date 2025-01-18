@@ -1,0 +1,78 @@
+-- data:extend({
+--     {
+--         type = "unit",
+--         name = "my-new-biter",
+--         icon = "__base__/graphics/icons/close-white.png",
+--         icon_size = 32,
+--         flags = {"placeable-player", "placeable-enemy", "placeable-off-grid", "breaths-air"},
+--         max_health = 100,
+--         order = "b-b-a",
+--         subgroup = "enemies",
+--         attack_parameters = {
+--             type = "projectile",
+--             range = 0.5,
+--             cooldown = 35,
+--             ammo_category = "melee",
+--             ammo_type = {
+--                 category = "melee",
+--                 target_type = "entity",
+--                 action = {
+--                     type = "direct",
+--                     action_delivery = {
+--                         type = "instant",
+--                         target_effects = {
+--                             type = "damage",
+--                             damage = { amount = 7 , type = "physical"}
+--                         }
+--                     }
+--                 }
+--             }
+--         },
+--         vision_distance = 30,
+--         movement_speed = 0.2,
+--         distance_per_frame = 0.1,
+--         pollution_to_join_attack = 200,
+--         distraction_cooldown = 300,
+--         run_animation = {
+--             {
+--                 layers = {
+--                     {
+--                         filename = "__base__/graphics/entity/biter/biter-run-1.png",
+--                         width = 105,
+--                         height = 95,
+--                         frame_count = 16,
+--                         direction_count = 16,
+--                         scale = 0.5,
+--                         animation_speed = 0.3
+--                     }
+--                 }
+--             }
+--         },
+--         attack_animation = {
+--             layers = {
+--                 {
+--                     filename = "__base__/graphics/entity/biter/biter-attack.png",
+--                     width = 279,
+--                     height = 184,
+--                     frame_count = 11,
+--                     direction_count = 16,
+--                     scale = 0.5,
+--                     animation_speed = 0.3
+--                 }
+--             }
+--         },
+--         dying_animation = {
+--             layers = {
+--                 {
+--                     filename = "__base__/graphics/entity/biter/biter-die.png",
+--                     width = 190,
+--                     height = 129,
+--                     frame_count = 17,
+--                     direction_count = 16,
+--                     scale = 0.5,
+--                     animation_speed = 0.3
+--                 }
+--             }
+--         }
+--     }
+-- })
