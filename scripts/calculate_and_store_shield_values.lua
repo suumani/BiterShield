@@ -3,7 +3,7 @@ function calculate_and_store_shield_values()
 
 	-- 接続中のプレイヤー数を取得
 	local player_count = 1
-	if game and #game and #game.connected_players then
+	if game and #game.connected_players then
 		player_count = #game.connected_players
 	end
 
@@ -23,34 +23,34 @@ function calculate_and_store_shield_values()
 	end
 
 	-- グローバル変数に保存
-	global.total_shield_rate = 1
+	storage.total_shield_rate = 1
 	
 	-- 資源増加あれば倍率で
 	if iron_rates > 0 then
-		global.total_shield_rate = 1 + iron_rates * 3 -- 気分で影響は3倍に
+		storage.total_shield_rate = 1 + iron_rates * 3 -- 気分で影響は3倍に
 	end
 	
 	if player_count > 1 then
-		global.total_shield_rate = global.total_shield_rate * (1 + player_count * 1.5 / 10)
+		storage.total_shield_rate = storage.total_shield_rate * (1 + player_count * 1.5 / 10)
 	end
 	
 	-- 基礎シールドの定義
-	global.additional_shield = 0
+	storage.additional_shield = 0
 	
 	-- 資源増加あれば基礎値も加算で
 	if iron_rates > 0 then
-		global.additional_shield = 30
+		storage.additional_shield = 30
 	end
 
 	-- ピースフルモードの確認
 	local peaceful_mode = map_gen_settings.peaceful_mode
 	-- ピースフルモードであればシールド値を大幅に増加
 	if peaceful_mode then
-		global.additional_shield = 200000
+		storage.additional_shield = 200000
 	end
 	
 	-- 汚染がオフの場合もシールド値を大幅に増加
 	if not game.map_settings.pollution.enabled then
-		global.additional_shield = 200000
+		storage.additional_shield = 200000
 	end
 end

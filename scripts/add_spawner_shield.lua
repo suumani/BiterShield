@@ -1,16 +1,16 @@
 -- バイターの巣のシールド
 function add_spawner_shield(entity)
 	local play_time_hours = game.tick / (60 * 60 * 60)
-	local shield_value = 10 + entity.prototype.max_health * 0.1
+	local shield_value = 10 + entity.max_health * 0.1
 	if play_time_hours < 80 then
-		shield_value = shield_value + math.floor(entity.prototype.max_health * 0.05 * play_time_hours)  -- 1時間ごとにシールド5%
+		shield_value = shield_value + math.floor(entity.max_health * 0.05 * play_time_hours)  -- 1時間ごとにシールド5%
 	else
-		shield_value = shield_value + math.floor(entity.prototype.max_health * 0.05 * 80)  -- 1時間ごとにシールド5% (80時間分)
+		shield_value = shield_value + math.floor(entity.max_health * 0.05 * 80)  -- 1時間ごとにシールド5% (80時間分)
 		if play_time_hours < 800 then
-			shield_value = shield_value + math.floor(entity.prototype.max_health * 0.025 * play_time_hours)  -- 1時間ごとにシールド2.5%
+			shield_value = shield_value + math.floor(entity.max_health * 0.025 * play_time_hours)  -- 1時間ごとにシールド2.5%
 		else
-			shield_value = shield_value + math.floor(entity.prototype.max_health * 0.025 * 800)  -- 1時間ごとにシールド2.5% (800時間分)
-			shield_value = shield_value + math.floor(entity.prototype.max_health * 0.01 * play_time_hours)  -- 1時間ごとに1%の最大HPをシールドとして追加
+			shield_value = shield_value + math.floor(entity.max_health * 0.025 * 800)  -- 1時間ごとにシールド2.5% (800時間分)
+			shield_value = shield_value + math.floor(entity.max_health * 0.01 * play_time_hours)  -- 1時間ごとに1%の最大HPをシールドとして追加
 		end
 	end
 
@@ -27,7 +27,7 @@ function add_spawner_shield(entity)
 	end	
 	local distance = x + y
 	if r < 4 then
-		shield_value = shield_value + entity.prototype.max_health + distance * 0.3
+		shield_value = shield_value + entity.max_health + distance * 0.3
 	end
 	-- ランダムでシールド3倍
 	if r < 10 then
@@ -56,7 +56,8 @@ function add_spawner_shield(entity)
 	end
 	
 	-- 設定によるシールド値の増加
-	shield_value = shield_value * global.total_shield_rate + global.additional_shield
+	shield_value = shield_value * storage.total_shield_rate + storage.additional_shield
 	
-	global.biter_shields[entity.unit_number] = shield_value  -- ユニット番号をキーとしてシールド値を保存
+	storage.biter_shields = storage.biter_shields or {}
+	storage.biter_shields[entity.unit_number] = shield_value  -- ユニット番号をキーとしてシールド値を保存
 end

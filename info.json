@@ -1,9 +1,12 @@
 {
     "name": "BiterShield",
-    "version": "0.1.8",
-    "factorio_version": "1.1",
+    "version": "2.0.6",
+    "factorio_version": "2.0",
     "title": "Biter Shield",
     "author": "suumani",
     "description": "Players will be environmentally friendly ;)",
-    "thumbnail": "thumbnail.png"
+    "thumbnail": "thumbnail.png",
+    "dependencies": [
+        "base >= 2.0.0"
+    ]
 }

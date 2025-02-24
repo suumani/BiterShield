@@ -1,13 +1,14 @@
--- GUIXV
+-- GUIæ›´æ–°
 function update_selected_biter_gui(player, entity)
 	local frame = player.gui.left["biter_shield_frame"]
 	if frame then
-		frame.destroy() -- Šù‘¶‚ÌGUI‚ª‚ ‚ê‚Îíœ
+		frame.destroy() -- æ—¢å­˜ã®GUIãŒã‚ã‚Œã°å‰Šé™¤
 	end
 	
-	if entity and (((entity.type == "unit" or entity.type == "turret") and entity.force.name == "enemy") or entity.name == "biter-spawner" or entity.name == "spitter-spawner") then
-		local shield = global.biter_shields[entity.unit_number] or 0
-		-- V‚µ‚¢GUIƒtƒŒ[ƒ€‚ðì¬
+	if entity and ((entity.type == "unit" or entity.type == "turret" or entity.type == "unit-spawner") and entity.force.name == "enemy") then
+		storage.biter_shields = storage.biter_shields or {}
+		local shield = storage.biter_shields[entity.unit_number] or 0
+		-- æ–°ã—ã„GUIãƒ•ãƒ¬ãƒ¼ãƒ ã‚’ä½œæˆ
 		frame = player.gui.left.add{type = "frame", name = "biter_shield_frame", caption = "Biter Info"}
 		frame.add{type = "label", caption = "HP: " .. math.floor(entity.health)}
 		frame.add{type = "label", caption = "Shield: " .. math.floor(shield)}
